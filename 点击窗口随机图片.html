@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0 auto;
+            /* overflow-y: scroll; */
+            
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<!-- <script>
+    var maxX = document.documentElement.clientWidth;
+
+
+    function ranPic() {
+        var picArr = ['./img/01.jpg', './img/2.jpg', './img/3.jpg', './img/4.jpg', './img/5.jpg'];
+        //获取随机索引
+        var ranIndex = parseInt(Math.random() * picArr.length);
+        return picArr[ranIndex];
+    }
+
+    document.onclick = function (e) {
+        console.log(e);
+        var ev = e || evet;
+
+        // var imgs = img.clientWidth;
+        // console.log(imgs);
+
+        // var maxX = maxX - imgs;
+        
+        var ml = ev.clientX;
+        var mt = ev.clientY - 90;
+        
+        console.log(maxX)
+
+        if (mt >= maxX) {
+            console.log(maxX, "ssss");
+            console.log(mt, "sss");
+            mt = maxX;
+        } else if (mt <= 0) {
+            mt = 0;
+            console.log(maxX, "aaa");
+            console.log(mt, "ssqqqs");
+        }
+
+
+        var img = document.createElement('img');
+        img.src = ranPic();
+
+        img.style.cssText = "width:100px;height:100px;position:absolute;top:" + mt + "px;left:" + ml + "px";
+        document.body.appendChild(img);
+
+
+
+    }
+</script> -->
+<script>
+    function ranPic() {
+        var picArr = ['./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png'];         //获取随机索引
+
+        var ranIndex = parseInt(Math.random() * picArr.length);
+        return picArr[ranIndex];
+    }
+
+
+    document.onclick = function (e) {
+        var maxX = window.innerWidth;
+        var maxY = window.innerHeight;
+        console.log(maxX + ':maxX');
+        var ev = e || evet;
+        var ml = ev.clientX;
+        var mt = ev.clientY - 90;
+        var img = document.createElement('img');
+        img.src = ranPic();
+        console.log(ml, "shsj")
+        console.log(ml + 100, "sahfopp")
+
+        if (ml + 100 >= maxX) {
+            ml = maxX - 100;
+            console.log(ml, "sajkoippp")
+        } else if (ml <= 0) {
+            ml = 0;
+            console.log(maxX, "aaa");
+            console.log(mt, "ssqqqs");
+        }
+
+        if (mt + 100 >= maxY) {
+            mt = maxY - 100;
+            console.log(ml, "sajkoippp")
+        } else if (mt <= 0) {
+            mt = 0;
+            console.log(maxY, "aaa");
+            console.log(mt, "ssqqqs");
+        }
+
+        // if (ml + 100 >= maxX) {
+        //     ml = maxX - 100;
+        // }
+
+        // if (mt + 100 >= maxY) {
+        //     mt = maxY - 100
+        // }
+        img.style.cssText = "width:100px;height:100px;position:absolute;top:" + mt + "px;left:" + ml + "px";
+        document.body.appendChild(img);
+
+
+        var imgs = img.clientWidth;
+        console.log(imgs);
+        var maxX = maxX - imgs;
+
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>dom2</title>
+    <style>
+        #box {
+            width: 500px;
+            height: 500px;
+            background-color: red;
+        }
+
+        #outer {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+
+        #inner {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var outer = document.getElementById("outer");
+        var inner = document.getElementById('inner');
+        var oBox = document.getElementById('box');
+
+        oBox.addEventListener("click", function () {
+            alert('1');
+        }, true)
+
+        oBox.addEventListener("click", function () {
+            alert('4');
+        }, false)
+
+        outer.addEventListener("click", function (e) {
+            // alert("2");
+            var ev = e || event;
+            if(ev.stopPropagation){
+                ev.stopPropagation();
+            }else{
+                ev.cancelBubble = true;
+            }
+        }, true);
+        
+        inner.addEventListener("click", function () {
+            alert('3.2')
+        }, false)
+
+
+        inner.addEventListener("click", function () {
+            alert("3.1");
+        }, true);
+
+    }
+</script>
+
+<body>
+    <div id="box">
+        <div id="outer">
+            <div id="inner"></div>
+        </div>
+    </div>
+</body>

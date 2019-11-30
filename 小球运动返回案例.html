@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #ball{
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            background-color: red;
+
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+</body>
+<script>
+    var ball = document.getElementById("ball");
+
+
+    // 获取小球可移动的最大区域 = 当前窗口范围 - 小球本身大小
+    var maxX = document.documentElement.clientWidth - ball.clientWidth;
+
+
+    // 指定步长值
+    var step = 10;
+
+
+    // 声明定时器
+    var timer = setInterval(function(){
+        // console.log("...")
+        // 小球移动后的位置 = 小球原来距离左边的距离 + 步长值
+        var ml = ball.offsetLeft + step;
+
+
+        // 判断边界
+        if(ml >= maxX){
+            ml = maxX;
+            step *= -1;
+        }else if(ml <=0){
+            ml = 0;
+            step = -step;
+        }
+
+
+        ball.style.left = ml + "px";
+    },100);
+
+
+    // 窗口改变事件 窗口改变实时更新可移动最大范围
+    window.onresize = function () {
+        maxX = document.documentElement.clientWidth - ball.clientWidth;
+    }
+</script>
+</html>

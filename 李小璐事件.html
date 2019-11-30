@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <pre>
+    需求：获取用户输入的评论，并将其追加到评论区....
+    注意点：1. 输入框中的内容可以使用 js 元素.value 获取   JQuery $(selelctor).val()
+           2. DOM高级操作  节点创建 、 添加 、 删除 、 插入等等
+</pre>
+
+
+    <h3 style="color: red;">今日话题：##你怎么看待李小璐和PGOne事件...下方评论区写出你的看法</h3>
+
+
+    <label>用户昵称：<input type="text" id="petName"></label><br>
+    <label>请输入您的评论：<input type="text" id="userIpt"></label><br>
+
+
+    <button id="addBtn">点击追加评论</button>
+
+
+    <h4>来自广大网友心声：</h4>
+
+
+    <article style="display:block;">
+        <ul id="list">
+            <li><strong>来自火星的小霸王：</strong><span>可怜我亮哥...</span><button class="rembtn">删除</button></li>
+            <li><strong>火舞你住手：</strong><span>鸡找鸡，蛋找蛋，王八看上PGOne...</span><button class="rembtn">删除</button></li>
+            <li id="lastItem" style="margin-top: 10px;font-size: 12px;color: orange;">上方评论区，写下你精彩的留言....</li>
+        </ul>
+    </article>
+    <!-- <button id="rem">删除</button> -->
+
+
+</body>
+<script src="./js/jquery-3.4.1.js"></script>
+<script>
+    //jquery方法：
+    // $("#addBtn").click(function(){
+    //     console.log( $('#petName').val());
+
+
+    //     $(".lastItem").before($("<li><strong>" + $('#petName').val() + ":</strong><span>" + $("#userIpt").val() + "</span><button>删除</button></li>"))
+
+
+    //     $("#userIpt").val("");
+    //     $('#petName').val(""); 
+    // })
+    var addBtn = document.getElementById('addBtn');
+    var petName = document.getElementById('petName');
+    var userIpt = document.getElementById('userIpt');
+    var list = document.getElementById('list');
+    var rembtn = document.getElementsByClassName('rembtn');
+    var lastItem = document.getElementById("lastItem");
+
+
+    for (var j = 0; j < rembtn.length; j++) {
+
+        rembtn[j].onclick = function () {
+
+
+            this.parentNode.remove();
+        }
+    };
+    //除了下面的解释，注意的是for循环中j的长度一定是下方点击事件rembtn的长度，两个地方必须值一样
+    //js中只要对一个结构里有两个以上相同的按钮或者其他东西进行操作，都要进行for循环遍历，否则不能保证每一个按钮都可以有点击事件，也就是因为封装函数只能执行一次；
+
+
+    addBtn.onclick = function () {
+
+
+        console.log(petName.value);
+        console.log(userIpt.value);
+
+
+        var li = document.createElement("li");
+
+
+        // list.insertBefore(li,lastItem);
+        //element.insertBefore(newnode,oldnode) 在已有的子节点前插入一个新的子节点
+
+        /* 想要看方法三，就把下边的delThis方法放开，把方法二封上 */
+        // li.innerHTML = "<li><strong>" + petName.value + ":</strong><span>" + userIpt.value + "</span><button class='rembtn' onclick='delThis(this)'>删除</button></li>";
+ 
+        /* 这里对应的方法一方法二 */
+         li.innerHTML = "<li><strong>" + petName.value + ":</strong><span>" + userIpt.value + "</span><button class='rembtn'>删除</button></li>";
+
+        list.insertBefore(li, lastItem);
+
+        petName.value = null;
+        userIpt.value = " ";
+
+        /* 这是原来的方法 */
+
+        // for (var i = 0; i < rembtn.length; i++) {
+        //     rembtn[i].onclick = function () {
+        //         this.parentNode.remove();
+        //     }
+        // }
+
+
+        /* 方法二 */
+
+        rembtn[rembtn.length - 1].onclick =  function(){
+            this.parentNode.remove();
+        }
+
+
+    }
+
+
+    /* 方法三 */
+    // function delThis(a) {
+    //     a.parentElement.remove();
+    // }
+
+
+</script>
+
+</html>

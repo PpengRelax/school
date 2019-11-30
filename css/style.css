@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.inner {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.head {
+    position: relative;
+    height: 655px;
+    border: 1px solid #000;
+}
+
+
+.carousel img {
+    display: none;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel .show {
+    display: block;
+}
+
+.headTop {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    height: 91px;
+}
+
+.headTop ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+}
+
+
+.headTop ul .logo {
+    align-self: flex-start;
+}
+
+.headTop ul .logo a {
+    display: block;
+    height: 103px;
+    width: 151px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../img/logo.png");
+}
+
+.logo~li {
+    width: 120px;
+    height: 100%;
+    display: flex;
+    border-right: solid 1px #EAEAEA;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.logo~li p {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.logo~li span {
+    display: block;
+    margin-top: 9px;
+    color: #D1C7CA;
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.logo~li:hover {
+    background: #f1f1f1;
+    border-top: 4px solid orange;
+    margin-top: -4px;
+}
+
+.headLeft {
+    position: relative;
+    left: 7px;
+    background: url("../img/list_boxbg.png");
+    width: 3px;
+    height: 266px;
+    z-index: 10;
+    margin-top: 220px;
+}
+
+.headLeft ul {
+    width: 3px;
+    height: 266px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: -6px;
+}
+
+.headLeft ul li {
+    width: 15px;
+    height: 15px;
+    background: url("../img/num_bg.png");
+}
+
+.headLeft ul li a{
+    width: 104px;
+    height: 43px;
+    margin-left: -76px;
+    margin-top: -17px;
+    background: url("../img/num_hover.png");
+    /* display: block; */
+
+    display: none;
+}
+
+.headLeft a.on{
+    display: block;
+}
+
+.headLeft ul li:nth-last-of-type(2) a{
+    background: url("../img/num_hover2.png");
+}
+
+.headLeft ul li:nth-last-of-type(3) a{
+    background: url("../img/num_hover3.png");
+}
+
+.headLeft ul li:nth-child(4) a{
+    background: url("../img/num_hover4.png");
+}

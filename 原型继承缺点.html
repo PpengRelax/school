@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+     // 定一个父类 人类
+   function People(name,sex,age){
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
+
+
+    People.prototype.sayHi = function(){
+        console.log("姓名：",this.name,"性别：",this.sex,"年龄：",this.age)
+    }
+
+
+    // 定义一个医生类 
+    function Doctor(name,sex,age){
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
+
+
+    // 实现原型继承的关键：子类的原型 指向 父类的实例化对象
+    Doctor.prototype = new People();
+    // 问题，改变了子类实例化对象的contructor指向，指向父类这个构造函数，造成结构紊乱
+    // 所以，需要手动把子类的构造函数改回来
+    Doctor.prototype.constructor = Doctor;
+
+
+    // 实例化一个医生对象
+    var doctor = new Doctor("张三丰","男",120);
+</script>
+</html>

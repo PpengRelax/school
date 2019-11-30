@@ -1,0 +1,15 @@
+.wrap{
+    display: table;
+    width: 500px;
+    height: 500px;
+    border: solid 1px #e3e3e3;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.row{
+    display:table-row;
+}
+.grid{
+    display: table-cell;
+    border: solid 1px #e3e3e3;
+}

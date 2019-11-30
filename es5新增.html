@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Test:筛选出下列数组中含有 “p” 字符的水果
+    var arr = ["apple", "peach", "pear", "kiwi", "orange", "banana"]; 
+
+    // var newArr = arr.filter(item => item.indexOf('p') !== -1);
+
+    var a = arr.filter(function(item){
+
+        return item.indexOf('p') !== -1;
+       
+    })
+
+    console.log(a);
+
+    // IE8及以下兼容处理
+</script>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var num = 10;
+    // function fn(){
+    //     console.log("num:",num);//undefined  变量的提升只是声明的提升
+    //     var num = 100;
+    //     console.log("num:",num);//100
+    // }
+    // fn();
+    // console.log("num:",num);//10
+
+
+
+
+    // var num = 10;
+    // console.log("num:",num);//10
+    // function fn(){
+    //     console.log("num:",num);//10
+    //     num = 100;
+    //     console.log("num:",num);//100
+    // }
+    // fn();
+    // console.log("num:",num);//100
+
+
+
+
+    // console.log("num:",num);//Error: num is not defined
+    // function fn(){
+    //     console.log("num:",num);//undefiend
+    //     var num = 100;
+    //     console.log("num:",num);//100
+    // }
+    // fn();
+    // console.log("num:",num);//Error: num is not defined  外部没有办法调用到函数作用域内的局部变量
+
+
+
+
+    // console.log("num:",num);//Error: num is not defined
+    // function fn(){
+    //     // console.log("num:",num);//Error: num is not defined
+    //     num = 100;
+    //     console.log("num:",num);//num: 100
+    // }
+    // fn();
+    // console.log("num:",num);//num: 100  外部可以调用到函数内没有使用var声明的变量
+
+
+
+
+    // 开启严格模式  必须放在全局脚本的第一行或者是函数作用域内的第一行位置，前面不能有有效的语句体
+    // "use strict";
+
+
+    // var num = 100;
+    // console.log("num:",num);
+
+
+    // /*
+    // *  非严格模式下，变量可以不使用var声明
+    // *  严格模式下，变量必须使用var声明，否则报错：ReferenceError: num is not defined
+    // *  也就是变量必须先声明，再使用
+    // */
+
+
+    // num = 10;
+    // console.log("num:",num);
+
+
+
+
+    // 函数体内开启严格模式  不会影响全局
+    // "use strict";
+    // // num = 100;
+    // // console.log("num:",num);
+    // function fn(){
+    //     // 函数体内开启严格模式
+    //     // "use strict";
+        
+    //     num = 10;
+    //     console.log("num:",num);
+    // }
+    // fn();
+    // console.log("num:",num);
+</script>
+</html>

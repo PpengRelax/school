@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .con {
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .news-nav {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .news-nav>li {
+            box-sizing: border-box;
+            width: 80px;
+            padding: 4px 0;
+            text-align: center;
+            border: solid 1px gray;
+            border-bottom: none;
+            cursor: pointer;
+        }
+
+        .news-nav>li.show {
+            border-top-width: 2px;
+            border-bottom: solid 2px white;
+        }
+
+        .news-content {
+            margin-top: -2px;
+            padding: 10px;
+            line-height: 2;
+            border: solid 1px;
+            border-top-width: 2px;
+        }
+
+        .news-content li {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .hid {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <ul class="news-nav">
+            <li class="show">国际新闻</li>
+            <li>国内新闻</li>
+            <li>世界杯</li>
+        </ul>
+        <div class="news-content">
+            <ul>
+                <li>美征收钢铝关税 墨西哥称将向世贸组织</li>
+                <li>英首相特雷莎与特朗普通话：美国加征</li>
+                <li>台军方已发现失联战机残骸，台军近</li>
+                <li>俄罗斯俄罗斯俄罗斯俄罗斯俄罗斯俄</li>
+            </ul>
+            <ul class="hid">
+                <li>台风来了！今年第4号台风生成，它给广东带</li>
+                <li>台风白色预警发布！第4号台风24小</li>
+                <li>央视：滴滴顺风车再爆审核漏洞 整改成效几</li>
+                <li>台湾水果价格崩跌20年最惨 国民党批蔡当</li>
+            </ul>
+            <ul class="hid">
+                <li>俄罗斯世界杯前瞻:俄罗斯会成为“史上最</li>
+                <li>习近平特使孙春兰将出席俄罗斯世界杯</li>
+                <li>卡拉斯科:俄罗斯世界杯全力以赴 维特</li>
+                <li>球迷必收藏!2018俄罗斯世界杯最终23</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script src="./js/jquery-3.4.1.js"></script>
+<script>
+    var nawsNav = document.querySelectorAll(".news-nav>li");
+    var newsContent = document.querySelectorAll(".news-content>ul");
+
+    for (var i = 0; i < nawsNav.length; i++) {
+        console.log(i);
+        for (var j = 0; j < nawsNav.length; j++) {
+            nawsNav[i].index = i;
+            nawsNav[i].onclick = function(){
+                console.log(this.index)
+                for(var j = 0;j < nawsNav.length;j++){
+                    nawsNav[j].classList.remove("show");
+                    newsContent[j].classList.add("hid");
+                }
+                this.classList.add("show");
+                newsContent[this.index].classList.remove("hid");
+            }
+        }
+    }
+
+
+
+
+
+    // var $newsNavs = $(".news-nav").children()
+    // $(".news-nav li").click(function(){
+    //     $(this).addClass("show").siblings().removeClass("show");
+    //     $(".news-content>ul").eq($(this).index()).removeClass("hid").siblings().addClass("hid");
+    // })
+
+</script>
+
+</html>

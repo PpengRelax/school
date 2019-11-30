@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        div {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+<script>
+    var arr = [10, 20, 30, 40, 10, 20, 20, 100];
+    console.log();
+    var brr = [];
+
+    for (var i = 0; i < arr.length; i++) {
+        
+        if (brr.indexOf(arr[i]) == -1) {
+            brr.push(arr[i]);
+        }
+
+    }
+    
+    // var arr = [10,20,30,40,10,20,20,100];
+    // var brr = [];
+    // for(var i = 0;i<arr.length; i++){
+    //     for(var j = 0;j<i;j++){
+    //         if(brr[j]!=arr[i]){
+    //             brr.push(arr[i]);
+    //         }
+    //         break;
+    //     }
+    // }
+    // var arr = [10, 20, 30, 40, 10, 20, 20, 100];
+    // console.log();
+    // var brr = [];
+
+
+    //排序
+    // brr.sort(function (a, b) {
+    //     return a - b;
+    // })
+
+    console.log(brr, "sjsjs");
+    // console.log(numA);
+</script>
+
+</html>

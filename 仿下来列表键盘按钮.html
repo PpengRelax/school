@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #con {
+            box-sizing: border-box;
+            width: 180px;
+            height: 26px;
+            margin: 100px auto;
+
+            position: relative;
+        }
+
+        #tit {
+            display: block;
+            padding: 0 5px;
+            color: gray;
+            line-height: 26px;
+            border: solid 1px black;
+
+            cursor: pointer;
+        }
+
+        #con::after {
+            content: "";
+            border: solid 8px transparent;
+            border-top-color: skyblue;
+            border-bottom: none;
+
+            position: absolute;
+            right: 10px;
+            top: 13px;
+            transform: translateY(-50%);
+        }
+
+
+        #sltAll {
+            box-sizing: border-box;
+            width: 100%;
+            line-height: 2;
+            list-style: none;
+            border: solid 1px;
+
+            position: absolute;
+            top: 27px;
+            left: 0px;
+
+            display: none;
+        }
+
+        #sltAll li {
+            padding: 0 5px;
+            cursor: pointer;
+        }
+
+        #sltAll li:hover {
+            background-color: #e3e3e3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="con">
+        <span id="tit">请选择户籍所在地</span>
+        <ul id="sltAll">
+            <li>厦门</li>
+            <li>重庆</li>
+            <li>成都</li>
+            <li>深圳</li>
+            <li>沧州</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var tit = document.getElementById("tit");
+    var sltAll = document.getElementById("sltAll");
+    var citys = document.getElementsByTagName("li");
+
+    var cutIndex = -1;
+
+    tit.onclick = function (e) {
+        var ev = e || event;
+
+        ev.stopPropagation();
+
+        sltAll.style.display = "block";
+
+        document.onkeydown = function () {
+
+            event.preventDefault();
+
+            var codeVal = event.keyCode;
+
+            for (var i = 0; i < citys.length; i++) {
+                citys[i].removeAttribute("style");
+            }
+
+            switch (codeVal) {
+                case 38:
+                    cutIndex--;
+                    if (cutIndex < 0) {
+                        cutIndex = citys.length - 1;
+                    }
+                    citys[cutIndex].style.backgroundColor = "#E3E3E3";
+                    break;
+                case 40:
+                    cutIndex++;
+                    if(cutIndex >= citys.length){
+                        cutIndex = 0;
+                    }
+                    citys[cutIndex].style.backgroundColor = "#E3E3E3";
+                    break;
+                case 13:
+                    tit.innerHTML = citys[cutIndex].innerHTML;
+                    sltAll.style.display = "none";
+                    break;
+                default:
+                    console.log("啦啦啦拉......")
+                    break;
+            }
+
+            for (var i = 0; i < citys.length; i++) {
+                citys[i].onclick = function () {
+                    tit.innerHTML = this.innerHTML;
+                }
+            }
+
+        }
+
+    }
+    document.onclick = function () {
+        sltAll.style.display = "none";
+    }
+</script>
+
+</html>

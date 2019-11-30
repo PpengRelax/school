@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var a = 10;
+    // function la(){
+    //     var a = 20;
+    //     function lo(){
+    //         console.log(a);
+    //     }
+    // }
+    
+    var fn = new Function("a","b","return a+n");
+    var fn1 = Function("a","b","return a+b");
+    console.log(fn);
+    // console.log(fn(10,20));
+    console.log(fn1(10,20));
+
+function fn2(){
+    console.log(arguments.length);
+    
+}
+fn2(10,20,30,40);
+
+console.log("fn形参个数：",fn.length);
+console.log("fn形参个数：",fn2.length);
+
+</script>
+</html>

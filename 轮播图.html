@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        ul{list-style: none;}
+
+
+        .carousel{
+            width: 280px;
+            height: 150px;
+            margin: 80px auto;
+            border: dotted 4px red;
+
+
+            position: relative;
+        }
+
+
+        .carousel a{
+            height: 100%;
+            width: 100%;
+            display: none;
+                       
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+
+        .carousel img{
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .carousel a.show{
+            display: block;
+        }
+
+
+        .carousel span{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+
+            height: 20px;
+            width: 20px;
+            background:rgba(0,0,0,.5) url("./img/cheveron-left.png");
+
+
+            cursor: pointer;
+        }
+
+
+        .carousel span.right-side{
+            right: 0;
+            background-image: url("./img/cheveron-right.png");
+        }
+
+
+        .bt-nav{
+            position: absolute;
+            left: 50px;
+            bottom: 10px;
+
+
+            display: flex;
+        }
+
+
+        .bt-nav li{
+            height: 4px;
+            width: 4px;
+            margin-left: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+
+        .bt-nav li.on{
+            background-color: white;
+            box-shadow: 0px 0px 0px 2px rgba(173,196,208,.6);
+        }
+    </style>
+</head>
+<body>
+<pre>
+    呼吸轮播图要点：
+        将所有的图片罗列在一起；
+        通过opacity不透明度的改变;
+        如果借助jQuery中的fadeIn()和fadeOut()方法，需要设置元素display:none;
+</pre>
+
+
+<!-- 呼吸轮播图布局代码 -->
+<div class="carousel">
+    <!-- 所有的图片 -->
+    <div class="pic-wrap">
+        <a href="" class="show"><img src="./img/01.jpg" alt=""></a>
+        <a href=""><img src="./img/2.jpg" alt=""></a>
+        <a href=""><img src="./img/3.jpg" alt=""></a>
+        <a href=""><img src="./img/4.jpg" alt=""></a>
+        <a href=""><img src="./img/5.jpg" alt=""></a>
+    </div>
+
+
+    <!-- 左右导航 -->
+    <span class="left-side"></span>
+    <span class="right-side"></span>
+
+
+    <!-- 底部导航 -->
+    <ul class="bt-nav">
+        <li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+<script src="./js/jquery-3.4.1.js"></script>
+<script>
+    // 获取所有的轮播图片
+    var $hrefImgs =  $(".pic-wrap a");
+    var len = $hrefImgs.length;
+    var $lis = $(".bt-nav li");
+
+
+    // 设置一个初始轮播的索引值
+    var cutIndex = 0;
+
+
+    // 间歇调用定时器，保证图片的自动轮播图效果
+    // setInterval(function(){
+    //     // console.log("....");//检查计时器是否成功
+    //     // 调用图片自动轮播函数
+    //     autoSlide();
+    // },3000);
+
+
+    //简化 需要给计时器一个名字 以备清除用
+    var timer = setInterval(autoSlide,5000);
+
+
+    // 鼠标滑过轮播区域，停止图片的轮播
+    $(".carousel").mouseenter(function(){
+        // 清除计时器
+        clearInterval(timer);
+    });
+
+
+    // 鼠标离开轮播区域，继续图片的轮播
+    $(".carousel").mouseleave(function(){
+        timer = setInterval(autoSlide,5000);
+    });
+
+
+    // 自动轮播函数的声明
+    function autoSlide(){
+        // console.log("...");
+
+
+        // 当前图片淡出
+        $hrefImgs.eq(cutIndex).fadeOut(500);
+
+
+        // 索引自增
+        // cutIndex++;
+        // // 做一个判断，是否超出轮播图片的数量
+        // if(cutIndex >= len){
+        //     // 将索引置位第一张图片的索引
+        //     cutIndex = 0;
+        // }
+
+
+        // 简化
+        if(++cutIndex >= len){
+            cutIndex = 0;
+        }
+        // console.log(cutIndex);
+
+
+        // 下一张图片的淡入
+        $hrefImgs.eq(cutIndex).fadeIn(500);
+
+
+        // 底部导航的变化
+        $lis.eq(cutIndex).addClass('on').siblings().removeClass("on");
+    }
+
+
+    // 左右导航   
+    $(".right-side").click(function(){
+        if($hrefImgs.is(":animated")){
+             return;
+        }
+
+
+        autoSlide();
+    });
+
+
+    $(".left-side").click(function(){
+        if($hrefImgs.is(":animated")){
+            return;
+        }
+        
+        // 当前图片淡出
+        $hrefImgs.eq(cutIndex).fadeOut(500);
+
+
+        // 索引--，并判断边界
+        if(--cutIndex < 0){
+            cutIndex = len - 1;
+        }
+
+
+        // 下一张图片的淡入
+        $hrefImgs.eq(cutIndex).fadeIn(500);
+
+
+        // 底部导航的变化
+        $lis.eq(cutIndex).addClass('on').siblings().removeClass("on");
+    });
+</script>
+</html>

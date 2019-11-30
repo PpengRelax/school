@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">click me</button>
+    <button id="rmbtn">click me</button>
+
+</body>
+<script>
+    var btn = document.getElementById("btn");
+    var rmbtn = document.getElementById("rmbtn");
+
+    btn.attachEvent("onclick",fn) 
+
+    function fn(){
+        console.log("IE事件程序。。。。")
+    }
+
+    rmbtn.attachEvent("onclick",function(){
+        btn.detachEvent("onclick",fn)
+        console.log("点击事件。。。。")
+    }) 
+
+    //谷歌和火狐以及IEEdge 不识别错误
+
+
+
+    
+</script>
+</html>

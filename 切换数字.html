@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            width: 500px;
+            display: flex;
+            list-style: none;
+            margin: 20px;
+            padding: 10px 20px;
+            border: solid 1px red;
+        }
+
+        ul.num-nav {
+            border-radius: 100px;
+        }
+
+        li {
+            width: 100px;
+            height: 100px;
+            margin-left: 20px;
+            background-color: #e3e3e3;
+        }
+
+        .num-nav>li {
+            color: red;
+            font-size: 50px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="num-nav">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul class="bg-block">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+<script src="./js/jquery-3.4.1.js"></script>
+<script>
+    // var numNavs = document.querySelectorAll(".num-nav>li");
+    // var bgBlocks = document.querySelectorAll(".bg-block>li");
+
+    // for (var i = 0; i < numNavs.length; i++) {
+    //     numNavs[i].index = i;
+    //     numNavs[i].onclick = function () {
+    //         bgBlocks[this.index].style.backgroundColor = getRanColor();
+    //     }
+    // }
+
+    $(".num-nav>li").click(function(){
+        $(".bg-block>li").eq($(this).index()).css("backgroundColor",getRanColor());
+    })
+
+    function getRanColor() {
+        var r = parseInt(Math.random() * 256);
+        var g = parseInt(Math.random() * 256);
+        var b = parseInt(Math.random() * 256);
+
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+</script>
+
+</html>

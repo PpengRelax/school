@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+.carousel{
+    width: 400px;
+    height: 225px;
+    margin:100px auto;
+    border: solid 4px orange;
+
+    position: relative;
+    
+    overflow: hidden;
+}
+
+.pic-con{
+    width: 9999px;
+    position: absolute;
+    left: 0;
+}
+
+.carousel img{
+    float: left;
+    width: 400px;
+    height: 225px;
+}
+
+
+.cheveron{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cheveron>span{
+    display: block;
+    float: left;
+    height: 15px;
+    width: 15px;
+    padding: 10px 4px;
+    background: rgba(0,0,0,.7) url(../img/cheveron-left.png) center no-repeat;
+    cursor: pointer;
+}
+
+.cheveron>span.cheveron-right{
+    float: right;
+    background-image: url(../img/cheveron-right.png);
+}
+
+.bt-nav{
+    display: flex;
+    padding: 4px 8px;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 16px;
+
+    background-color: #8F8E95;
+    border-radius: 16px;
+}
+
+.bt-nav li{
+    border: solid 4px white;
+    border-radius: 50%;
+}
+
+.bt-nav li:first-of-type~li{
+    margin-left: 6px;
+}
+
+.bt-nav li.on{
+    border-color: red;
+}

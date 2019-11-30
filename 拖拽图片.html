@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/01.jpg" alt="">
+</body>
+<script>
+    // var img = document.querySelector("img");
+    var img = document.getElementsByTagName("img")[0];
+    var maxX = document.documentElement.clientWidth - img.clientWidth;
+    var maxY = document.documentElement.clientHeight - img.clientHeight;
+    console.log(img.clientHeight);
+
+    img.onmousedown = function (e) {
+        var ev = e || event;
+        var initX = ev.clientX;
+        var initY = ev.clientY;
+
+        if (ev.preventDefault) {
+            ev.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+
+
+
+        document.onmousemove = function () {
+
+            var moveX = event.clientX - initX;
+            var moveY = event.clientY - initY;
+
+            initX = event.clientX;
+            initY = event.clientY;
+
+            var ml = img.offsetLeft + moveX;
+            var mt = img.offsetTop + moveY;
+
+            if (ml > maxX) {
+                ml = maxX;
+            } else if (ml < 0) {
+                ml = 0;
+            }
+            if (mt > maxY) {
+                mt = maxY;
+            } else if (mt < 0) {
+                mt = 0;
+            }
+
+            img.style.left = ml + "px";
+            img.style.top = mt + "px";
+
+        }
+
+    }
+    window.onmouseup = function () {
+        document.onmousemove = null;
+
+    }
+    window.onresize = function () {
+        maxX = document.documentElement.clientWidth - img.clientWidth;
+        maxY = document.documentElement.clientHeight - img.clientHeight;
+    }
+</script>
+
+</html>

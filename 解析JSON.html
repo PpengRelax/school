@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+ES5新增JSON全局对象来实现序列化和反序列化
+    JSON.stringify()    对象的序列化，js对象（数组）转换为json对象（数组）
+    JSON.parse()        对象的反序列化，json对象（数组）转换为js对象（数组）
+
+
+JSON轻量级的数据交换格式，是JavaScript的一个子集；它是对象的字符串表示形式
+</pre>
+</body>
+<script>
+    // 序列化的过程
+    // 创建一个对象
+    var obj = { name: "张三", age: 23, sex: "男" };
+
+
+    //  JSON.stringify()  将对象转为JSON字符串
+    var json = JSON.stringify(obj);
+    console.log(json, "数据类型：", typeof json);
+
+
+    // 创建一个数组
+    var arr = [{ name: "张三", age: 23, sex: "男" }, { name: "李四", age: 24, sex: "男" }, { name: "李翠花", age: 24, sex: "女" }];
+    var jsonArr = JSON.stringify(arr);
+    console.log(jsonArr, "数据类型：", typeof jsonArr);
+
+
+    // localStorage.msg = jsonArr;
+
+
+    // 反序列化
+    // 创建一个JSON串
+    var jsonStr = '{"a":1,"b":"hello","c":[{"d":10,"e":"100"}]   }';
+    // 通过JSON.parse()把 JSON串 转为 对象
+    var object = JSON.parse(jsonStr);
+    console.log(object, "数据类型：", typeof object);
+
+
+    // 不用ES5中JSON.parse() 将字符串转为对象   Function()函数构造器
+    var fn = new Function("return " + jsonStr);
+    // console.log(fn);
+    var result = fn();
+    console.log(result, "数据类型：", typeof result);
+</script>
+
+</html>

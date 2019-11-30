@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .con {
+            height: 400px;
+            width: 400px;
+            margin: 80px 200px;
+            border: solid 2px lightgray;
+
+            position: relative;
+        }
+
+        .con>img {
+            width: 100%;
+        }
+
+        .zoom {
+            height: 200px;
+            width: 200px;
+            background-color: #e3e3e3;
+            opacity: 0.5;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            cursor: move;
+
+            /* 消失不可见 不占位 如果设置为display:none; 通过js是获取不到宽高*/
+            display: none;
+        }
+
+        .zoomBig {
+            height: 400px;
+            width: 400px;
+            border: solid 2px lightgray;
+            overflow: hidden;
+
+            position: absolute;
+            top: 80px;
+            left: 620px;
+
+            display: none;
+        }
+
+        .zoomBig>img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左边商品部分 -->
+    <div class="con">
+        <img src="./img/800_800_1538989328772mp.png" alt="">
+        <div class="zoom"></div>
+    </div>
+
+    <!-- 右边细节展示 -->
+    <div class="zoomBig">
+        <img src="./img/800_800_1538989328772mp.png" alt="">
+    </div>
+</body>
+<script>
+    var con = document.querySelector(".con");
+    var zoom = document.querySelector(".zoom");
+    var zoomBig = document.querySelector(".zoomBig");
+    var img = document.querySelector(".zoomBig>img");
+
+
+    con.onmouseenter = function () {
+        zoom.style.display = "block";
+        zoomBig.style.display = "block";
+
+
+
+        document.onmousemove = function (e) {
+            var ev = e || event;
+
+            var ml = ev.clientX - con.offsetLeft - zoom.clientWidth / 2;
+            var mt = ev.clientY - con.offsetTop - zoom.clientWidth / 2;
+
+            if (ml >= 200) {
+                ml = 200;
+            } else if (ml <= 0) {
+                ml = 0;
+            }
+            if (mt >= 200) {
+                mt = 200;
+            } else if (mt <= 0) {
+                mt = 0;
+            }
+
+            zoom.style.left = ml + "px";
+            zoom.style.top = mt + "px";
+
+            img.style.left = -2 * ml + "px";
+            img.style.top = -2 * mt + "px";
+
+        }
+
+    }
+    con.onmouseleave = function () {
+        zoom.removeAttribute("style");
+        zoomBig.removeAttribute("style");
+
+        document.onmousemove = null;
+    }
+</script>
+
+</html>

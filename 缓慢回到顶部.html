@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {
+            line-height: 8;
+            background-color: yellow;
+        }
+
+        a {
+            /* display: block; */
+            height: 60px;
+            width: 60px;
+            padding: 5px;
+            font-size: 25px;
+            background-color: #e3e3e3;
+
+            position: fixed;
+            bottom: 30px;
+            right: 10px;
+
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="toTop"></div> -->
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+    <p>安徽省离开家的好伐啦就是的发就回家路上看到季候风</p>
+
+    <a href="#toTop">返回顶部</a>
+</body>
+<script>
+    var a = document.querySelector("a");
+
+    window.onscroll = function () {
+        var mt = document.documentElement.scrollTop;
+        if (mt >= 200) {
+            a.style.display = "block";
+        } else {
+            a.style.display = "none";
+        }
+
+        a.onclick = function(e){
+            var ev = e || evet;
+
+            if (ev.preventDefault) {
+                ev.preventDefault();
+            } else {
+                ev.returnVale = false;
+            }
+
+            var timer = setInterval(function () {
+                document.documentElement.scrollTop -= 10;
+                if (document.documentElement.scrollTop == 0) {
+                    document.documentElement.scrollTop = 0;
+                    clearInterval(timer);
+                }
+            },10)
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/llink.css">
+    <link rel="stylesheet" href="./css/左右切换.css">
+</head>
+<body>
+    <pre>
+    滚动轮播图要点：
+        盛放图片的容器尽可能大
+        盛放图片的容器位置移动来呈现轮播效果
+        如何平稳的切换边界轮播图片？？
+    </pre>
+
+    <div class="carousel">
+        <!-- 盛放图片的容器 -->
+        <div class="pic-con clearfix">
+            <img src="./img/01.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+            <img src="./img/6.jpg" alt="">
+            <!-- 添加一张和第一张图片一模一样的轮播图片 保证图片的平稳过渡 -->
+            <img src="./img/01.jpg" alt="">
+        </div>
+
+        <!-- 左右导航 -->
+        <div class="cheveron clearfix">
+            <span class="cheveron-left"></span>
+            <span class="cheveron-right"></span>
+        </div>
+
+        <!-- 底部导航 -->
+        <ul class="bt-nav">
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script src="./js/jquery-3.4.1.js"></script>
+<script src="./js/左右切换.js"></script>
+</html>

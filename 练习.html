@@ -1,0 +1,222 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #container {
+            position: relative;
+            width: 670px;
+            height: 221px;
+            margin: 100px auto;
+            border: solid 1px;
+            background: url(./img/pic_bg.gif) no-repeat;
+        }
+
+        /*分别设置每一张图片的位置和大小*/
+        #showPics>li {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            left: -120px;
+            top: 70px;
+        }
+
+        #showPics>li.no1 {
+            width: 90px;
+            height: 60px;
+            left: 20px;
+            top: 60px;
+        }
+
+        #showPics>li.no2 {
+            width: 112px;
+            height: 84px;
+            left: 121px;
+            top: 30px;
+        }
+
+        #showPics>li.no3 {
+            width: 156px;
+            height: 100px;
+            left: 250px;
+            top: 16px;
+        }
+
+        #showPics>li.no4 {
+            width: 112px;
+            height: 84px;
+            left: 430px;
+            top: 30px;
+        }
+
+        #showPics>li.no5 {
+            width: 90px;
+            height: 60px;
+            left: 560px;
+            top: 60px;
+        }
+
+        #showPics>li.no6 {
+            left: 710px;
+            top: 70px;
+        }
+
+        #showPics img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #btn>a {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            top: 150px;
+        }
+
+        #btn>a:first-child {
+            left: 25px;
+        }
+
+        #btn>a:last-child {
+            right: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="showPics">
+            <li class="no0"><img src="./img/0.png" alt="" /></li>
+            <li class="no1"><img src="./img/1.png" alt="" /></li>
+            <li class="no2"><img src="./img/2.png" alt="" /></li>
+            <li class="no3"><img src="./img/3.png" alt="" /></li>
+            <li class="no4"><img src="./img/4.png" alt="" /></li>
+            <li class="no5"><img src="./img/5.png" alt="" /></li>
+            <li class="no6"><img src="./img/6.png" alt="" /></li>
+        </ul>
+
+        <div id="btn">
+            <a href="javascript:;" id="leftBtn"></a>
+            <a href="javascript:;" id="rightBtn"></a>
+        </div>
+    </div>
+</body>
+<script src="./js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    //目前设置的位置和宽高，没有规律，如果想要实现左右点击切换的话，可以切换li标签的class值，以调整每张图片的位置
+    //获取相关元素
+    var $showPics = $("#showPics");
+    var $lis = $showPics.children('li')
+    var len = $lis.length;
+    console.log("len:",len);
+    
+    //定义一个数组，保存所有元素的初始状态（相关位置和大小等属性）
+    var jsonArr = [];
+    
+    //循环读取所有元素的样式，以对象的形式保存到数组lisArr中
+    for (var i = 0; i < len; i++) {
+        jsonArr.push({
+            //获取每一个遍历元素的相关位置和大小信息
+            "width":$(".no" + i).css("width"),
+            "height":$('.no' + i).css("height"),
+            "top":$(".no" + i).css("top"),
+            "left":$(".no" + i).css("left")
+        })
+    }
+    
+    console.log('jsonArr:',jsonArr);
+    
+    //定义一个数组，存储所有的类名
+    var classArr = ['no0','no1','no2','no3','no4','no5','no6']
+    
+    //给左右按钮设置点击事件
+    $("#leftBtn").click(function(){
+        //节流 防止动画积累
+        if($lis.is(":animated")){
+            return;
+        }
+        
+        //图片移动到 -1位置
+        $('.no1').animate(jsonArr[0],600);
+        $('.no2').animate(jsonArr[1],600);
+        $('.no3').animate(jsonArr[2],600);
+        $('.no4').animate(jsonArr[3],600);
+        $('.no5').animate(jsonArr[4],600);
+        $('.no6').animate(jsonArr[5],600);
+        
+        //为了防止 .no0穿堂而过，使用css设置位置
+        $('.no0').css(jsonArr[6]);
+        
+        //点击一次之后，再次点击，发现无效，这是因为需要类名的重新定义轮换   根据最新的位置重新从0开始排列
+        // 轮换类名就是删除数组的最后一项放入到数组的第一项
+        classArr.unshift(classArr.pop());//这里只是数组中元素 的改变，还需要页面对应上变化
+        
+        console.log(classArr)
+        
+        //改变后的类名体现在元素上
+        for (var i = 0; i < classArr.length; i++) {
+            //重新获取所有的li标签
+            $('li').eq(i).attr("class",classArr[i]);
+            console.log(i)
+        }
+    })
+    
+    
+    /*
+     *   A    B    C     D     E     F      G
+     *   0    1    2     3     4     5      6
+     * 
+     * ==> 左键  依次递减
+     * 
+     * 	B    C     D     E     F      G     A
+     *  1    2     3     4     5      6     0
+     * 
+     * ==>
+     */
+    
+    $("#rightBtn").click(function(){
+            //节流 防止动画积累
+        if($lis.is(":animated")){
+            return;
+        }
+        
+        //图片移动到 -1位置
+        $('.no0').animate(jsonArr[1],600);
+        $('.no1').animate(jsonArr[2],600);
+        $('.no2').animate(jsonArr[3],600);
+        $('.no3').animate(jsonArr[4],600);
+        $('.no4').animate(jsonArr[5],600);
+        $('.no5').animate(jsonArr[6],600);
+        
+        //防止穿堂而过
+        $('.no6').css(jsonArr[0],600);
+        
+        //类名轮换，获取删除数组的第一个，添加到数组结尾
+        classArr.push(classArr.shift());
+        
+        console.log(classArr);
+        
+        //体现在页面上
+        for (var i = 0; i < classArr.length; i++) {
+            $('li').eq(i).attr('class',classArr[i]);
+        }
+        
+    })
+    
+</script>
+</html>

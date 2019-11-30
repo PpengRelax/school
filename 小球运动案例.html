@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #ball{
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            background-color: red;
+
+
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+</body>
+<script src="./js/jquery-1.12.3.min.js"></script>
+<script>
+    // 需求：让小球从0运动到1000位置
+
+
+    // jQuery中调用函数
+    // $("#ball").animate({left:1000},3000,function(){
+    //     console.log("滚动到终点....")
+    // })
+
+
+    // JS昨天小球滚动
+    // 总长度 = 小球运动目标位置 - 初始位置  = 1000
+    // 间隔调用的时间 = 总时长 / 次数  = 3000 / 10
+    // 间歇调用运动的步长 = 总长度 / 次数 = 1000 / 10 = 100
+    var ball = document.getElementById("ball");
+    var stepX = 1;
+    var count = 0;
+    // console.log(window.getComputedStyle(ball).left)
+    console.log(parseInt(window.getComputedStyle(ball).left));
+
+
+    var initX = parseInt(window.getComputedStyle(ball).left);
+    // console.log(Number("0px"))
+    var timer = setInterval(function(){
+        count++;
+
+
+        // 当前运动到的位置 = 初始的位置 + 步长值 * 次数
+        ball.style.left = initX + stepX * count + "px";
+
+
+        if(count === 1000){
+            clearInterval(timer);
+        }
+    },3);
+</script>
+</html>

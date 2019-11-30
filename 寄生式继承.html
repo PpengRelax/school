@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 组合继承： 原型继承 + apply()
+    // 定一个父类 人类
+    //    function People(name,sex,age){
+    //         this.name = name;
+    //         this.sex = sex;
+    //         this.age = age;
+    //     }
+
+
+    //     People.prototype.sayHi = function(){
+    //         console.log("姓名：",this.name,"性别：",this.sex,"年龄：",this.age)
+    //     }
+
+
+    //     // 定义一个医生类 
+    //     function Doctor(name,sex,age){
+    //         People.apply(this,arguments);
+    //     }
+
+
+    //     // 实现原型继承的关键：子类的原型 指向 父类的实例化对象
+    //     Doctor.prototype = new People();
+    //     // 手动把子类的构造函数改回来
+    //     Doctor.prototype.constructor = Doctor;
+
+
+    //     // 实例化一个医生对象
+    //     var doctor = new Doctor("张三丰","男",120);
+
+
+
+
+    // 寄生组合继承
+    // 定一个父类 人类
+    function People(name, sex, age) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
+
+
+    People.prototype.sayHi = function () {
+        console.log("姓名：", this.name, "性别：", this.sex, "年龄：", this.age)
+    }
+
+
+    // 定义一个医生类 
+    function Doctor(name, sex, age) {
+        People.apply(this, arguments);
+    }
+
+
+    // 借助一个额外的函数，完成继承
+    function extend(parent, child) {
+        // 创建一个空的构造函数
+        function F() { }
+        // 空的构造函数的原型指向父类的原型
+        F.prototype = parent.prototype;
+        // 子类的原型指向空的构造函数的实例化对象
+        child.prototype = new F();
+        // 改回构造函数
+        child.prototype.constructor = child;
+        // 返回子类
+        return child;
+    }
+
+
+    // 函数调用
+    console.log(extend(People, Doctor));
+
+
+    Doctor.prototype.sayHello = function () {
+        console.log("Hello")
+    }
+
+
+    var doctor = new Doctor("张三", "男", 12);
+
+
+    console.log(doctor)
+
+
+    doctor.sayHi();
+
+
+    console.log(doctor instanceof People);//true
+
+
+    doctor.sayHello();
+</script>
+
+</html>

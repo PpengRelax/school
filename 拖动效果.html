@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 150px;
+            width: 150px;
+            background-color: orange;
+            /* 可以移动鼠标 */
+            cursor: move;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script>
+    var box = document.getElementById("box");
+
+    var maxX = document.documentElement.clientWidth - box.clientWidth;
+    var maxY = document.documentElement.clientHeight - box.clientHeight;
+
+    box.onmousedown = function (e) {
+        var ev = e || event;
+
+        var initX = ev.clientX;
+        var initY = ev.clientY;
+
+        document.onmousemove = function (e) {
+            var ev = e || event;
+
+            var moveX = ev.clientX - initX;
+            var moveY = ev.clientY - initY;
+
+            initX = ev.clientX;
+            initY = ev.clientY;
+
+            var ml = box.offsetLeft + moveX;
+            var mt = box.offsetTop + moveY;
+
+            if (ml > maxX) {
+                ml = maxX;
+            } else if (ml < 0) {
+                ml = 0;
+            }
+
+            if (mt > maxY) {
+                mt = maxY;
+            } else if (mt < 0) {
+                mt = 0;
+            }
+
+            box.style.left = ml + "px";
+            box.style.top = mt + "px";
+        }
+    }
+
+    window.onmouseup = function () {
+        document.onmousemove = null;
+    }
+
+    window.onresize = function () {
+        maxX = document.documentElement.clientWidth - box.clientWidth;
+        maxY = document.documentElement.clientHeight - box.clientHeight;
+    }
+</script>
+
+</html>
